@@ -6,14 +6,14 @@
 + Explain what a constructor function is and how it works
 + Explain what `this` is in the context of an object
 
-## Intro
+## Introduction
 
-In the [JavaScript Objects](https://learn.co/lessons/javascript-objects) lesson, we learned that an `Object` is the basic associative data structure in JavaScript. We can use these objects to associate data *values* with unique *keys*, giving us a human-readable representation of a logical collection of data.
+Simple variables are great for holding primitive data types, like strings and integers, but we often need a way to represent more complex data, associating many values to a single idea. In JavaScript, the `Object` is the basic associative data structure, and it works just like a dictionary. We can use these objects to associate data *values* with unique *keys*, giving us a human-readable representation of a logical collection of data.
 
-We know how to make objects in JavaScript. So let's make a few sandwiches:
+We can construct objects in JavaScript using the literal constructor:
+`{}` and giving it some properties. Let's make a few sandwiches:
 
 ```js
-
 var blt = {
   breadType: "white",
   crust: false,
@@ -71,13 +71,12 @@ In other words, we should only have to define they properties of a sandwich
 one time and then be able to create as many different sandwiches as we
 want without repeating ourselves.
 
-In Ruby, we'd accomplish this by way of the Ruby `Class`, which we could
-then instantiate into individual object instances. Is there a way to
-accomplish something similar in JavaScript?
+Is there a way to use JavaScript to create a template for a sandwich object that we can use
+to construct many different sandwiches?
 
 ### Constructor Function
 
-Of course there is! There's not a direct analog for the Ruby `Class` in JavaScript, but we can use a constructor function instead, which is conceptually very similar to initializing an instance of a Ruby class. We use the constructor function pattern to essentially build a *prototype* for what an object will look like, including all the properties.
+Of course there is! It's called a *constructor function*, and and its job, as you might guess from the very on-the-nose name, is to construct new objects. We use the constructor function pattern to essentially build a *prototype* for what an object will look like, including all the properties.
 
 **Advanced:** We call the constructor function a *pattern* because it's
 not a concept that's built-in to the JavaScript language, but rather a
@@ -85,7 +84,7 @@ design pattern that has evolved in to common usage as an accepted
 standard way to instantiate an object. Patterns can be small,
 task-oriented recipes, such as this constructor function, or they can be
 big, architecture-oriented guidelines, such as the MVC pattern at the
-root of a framework like Ruby on Rails. You can read more about design
+root of a framework like Ruby on Rails or AngularJS. You can read more about design
 patterns [here](http://www.oodesign.com/).
 
 Let's build a constructor function for our sandwich objects:
@@ -105,7 +104,7 @@ You'll notice the name of the constructor function `Sandwich` starts with a capi
 
 Next, we define the function to accept a whole bunch of parameters. When we create objects with this constructor function, we'll pass in the value of the properties we want our object to have.
 
-You'll also notice inside the body of the constructor function we're using `this`. In this case, `this` will refer to the current object being created. For now it's ok to think about `this` being similar to Ruby's self.  In this context, `this` refers to the object itself just like `self` does in Ruby. We'll explore `this` more in-depth in an an upcoming lesson.
+**Top-tip:** You'll notice inside the body of the constructor function we're using `this` in front of each of the property names. In this case, `this` will refer to the current object being created, and it's how we differentiate between the *property* `crust` and the local variable `crust` that we got from the function arguments.
 
 ### Creating an Instance From a Constructor Function
 
@@ -119,7 +118,7 @@ var turkeyClub = new Sandwich("sourdough", true, ["turkey", "bacon"], "mayo", ["
 var grilledCheese = new Sandwich("white", false, "none", "none", "none", "cheddar");
 ```
 
-Notice that when we call these functions, we always call them with the `new` keyword.  In Ruby, you're used to calling `MyClass.new` to instantiate a new object instance, and in JavaScript we're going to do something very similar.
+Notice that when we call these functions, we always call them with the `new` keyword. JavaScript needs us to use the `new` keyword to instantiate a new instance of an object. Without it, we're just invoking the function and setting it to the value of a variable, and since the function doesn't return anything, our variable will be `undefined`.
 
 All functions in JavaScript can be invoked with the `new` keyword, but we only want to do it with functions that are intended to be used as constructor functions. The way we let ourselves and others know when to use the `new` keyword is by making constructor functions start with capital letters! If we forget the new keyword we'll run into all sorts of problems.
 
