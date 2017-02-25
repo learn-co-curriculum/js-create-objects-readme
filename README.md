@@ -89,7 +89,7 @@ Next, we define the function to accept a whole bunch of parameters. When we crea
 
 Now that we have a constructor function, let's create our sandwiches:
 
-```javascript
+```js
 var blt = new Sandwich("white", false, "bacon", "mayo", ["lettuce", "tomato"], "none");
 
 var turkeyClub = new Sandwich("sourdough", true, ["turkey", "bacon"], "mayo", ["lettuce", "tomato"], "cheddar");
